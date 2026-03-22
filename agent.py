@@ -10,9 +10,11 @@ async def message_handler(update, context):
     text = update.message.text.lower()
 
     if "appointment" in text:
-        reply = "🩺 Book Appointment:\n👉 https://tally.so/r/OD0W8A
+        reply = "📅 Book Appointment:\n👉 https://tally.so/r/0D0W8A"
+
     elif "contact" in text:
-        reply = "📞 Call Doctor: 9XXXXXXXXX"
+        reply = "📞 Call Doctor: 9000000000"
+
     else:
         reply = "Type: appointment / contact"
 
@@ -25,11 +27,3 @@ app.add_handler(MessageHandler(filters.TEXT & ~filters.COMMAND, message_handler)
 
 print("Bot started...")
 app.run_polling()
-if "appointment" in text:
-    reply = "📅 Book Appointment:\n👉 https://tally.so/r/0D0W8A"
-
-elif "contact" in text:
-    reply = "📞 Call Doctor: 9000000000"
-
-else:
-    reply = "Type: appointment / contact"
