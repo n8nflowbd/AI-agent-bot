@@ -1,36 +1,16 @@
-import os
-from telegram import ReplyKeyboardMarkup
-from telegram.ext import ApplicationBuilder, CommandHandler, MessageHandler, filters
+ async def start(update, context):
+    await update.message.reply_text("🤖 Doctor Bot Ready!\nType: appointment / contact")
 
-TOKEN = os.getenv("TELEGRAM_TOKEN")
-
-async def start(update, context):
-    keyboard = [["📅 Book Appointment", "📞 Contact"], ["💊 Services"]]
-    reply_markup = ReplyKeyboardMarkup(keyboard, resize_keyboard=True)
-
-    await update.message.reply_text(
-        "Welcome 👋\nChoose option:",
-        reply_markup=reply_markup
-    )
-
-async def handle_message(update, context):
+async def message_handler(update, context):
     text = update.message.text.lower()
 
     if "appointment" in text:
-        await update.message.reply_text("Send Name + Date + Time")
-
+        reply = "🩺 Book Appointment:\n👉 https://tally.so/r/abc123"
+    
     elif "contact" in text:
-        await update.message.reply_text("Call: 9876543210")
-
-    elif "service" in text:
-        await update.message.reply_text("We provide treatment")
-
+        reply = "📞 Call Doctor: 9XXXXXXXXX"
+    
     else:
-        await update.message.reply_text("Type appointment/contact/service")
+        reply = "Type: appointment / contact"
 
-app = ApplicationBuilder().token(TOKEN).build()
-
-app.add_handler(CommandHandler("start", start))
-app.add_handler(MessageHandler(filters.TEXT & ~filters.COMMAND, handle_message))
-
-app.run_polling()
+    await update.message.reply_text(reply)
