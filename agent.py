@@ -1,3 +1,15 @@
+import os
+from telegram.ext import ApplicationBuilder, CommandHandler, MessageHandler, filters
+
+TOKEN = os.getenv("TELEGRAM_TOKEN")
+
+# 👉 Start command
+async def start(update, context):
+    await update.message.reply_text(
+        "👋 Doctor Bot Ready!\n\nType:\n👉 appointment\n👉 contact"
+    )
+
+# 👉 Message handler
 async def message_handler(update, context):
     text = update.message.text.lower()
 
@@ -7,10 +19,19 @@ async def message_handler(update, context):
     elif "contact" in text:
         reply = "📞 Call Doctor: 9000000000"
 
-    elif "hi" in text or "hello" in text:
+    elif any(word in text for word in ["hi", "hello", "hey"]):
         reply = "👋 Welcome!\nType:\n👉 appointment\n👉 contact"
 
     else:
-        reply = "❓ Type:\n👉 appointment\n👉 contact"
+        reply = "❓ Please type:\n👉 appointment\n👉 contact"
 
     await update.message.reply_text(reply)
+
+# 👉 App setup
+app = ApplicationBuilder().token(TOKEN).build()
+
+app.add_handler(CommandHandler("start", start))
+app.add_handler(MessageHandler(filters.TEXT & ~filters.COMMAND, message_handler))
+
+print("✅ Bot started...")
+app.run_polling()
