@@ -10,7 +10,7 @@ async def message_handler(update, context):
     text = update.message.text.lower()
 
     if "appointment" in text:
-        reply = "🩺 Book Appointment:\n👉 https://tally.so/r/abc123"
+        reply = "🩺 Book Appointment:\n👉 https://tally.so/r/OD0W8A
     elif "contact" in text:
         reply = "📞 Call Doctor: 9XXXXXXXXX"
     else:
