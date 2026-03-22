@@ -25,3 +25,11 @@ app.add_handler(MessageHandler(filters.TEXT & ~filters.COMMAND, message_handler)
 
 print("Bot started...")
 app.run_polling()
+if "appointment" in text:
+    reply = "📅 Book Appointment:\n👉 https://tally.so/r/0D0W8A"
+
+elif "contact" in text:
+    reply = "📞 Call Doctor: 9000000000"
+
+else:
+    reply = "Type: appointment / contact"
