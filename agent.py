@@ -2,7 +2,7 @@ import os
 from telegram import ReplyKeyboardMarkup
 from telegram.ext import ApplicationBuilder, CommandHandler, MessageHandler, filters
 
-TOKEN = os.getenv("TELEGRAM_TOKEN")
+TOKEN = os.getenv("8624798446:AAGwnO8Z_tBK4FySWX1KGBw9_FQK_89vyo0")
 
 # Start command
 async def start(update, context):
